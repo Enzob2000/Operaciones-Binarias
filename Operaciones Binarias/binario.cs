@@ -85,13 +85,15 @@ namespace Operaciones_Binarias
         }
 
         public List<int> suma(List<int> lista1, List<int> lista2,int final)
-        {
+        {  
+            //El tercer parametro de suma indica si final=0 realiza la suma y muestrala,si final=1 realiza la suma y no la muestra,si final=2 realiza la suma pero no tomes en cuenta el ultimo
+
             List<int> resultado = new List<int>();           
             int prueba=0;
             int residuo = 0;
-
             
            ( lista1,lista2 )= completar(lista1, lista2);
+
             for (int i = lista1.Count- 1; i >= 0; i--)
             {
                 
