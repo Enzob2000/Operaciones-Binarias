@@ -13,7 +13,7 @@ namespace Operaciones_Binarias
 
         public int tamano { get; set; }
 
-        public string nbinario { get; set; }
+        public int nbinario { get; set; }
 
         public List<int> lista { get; set; }
 
@@ -32,14 +32,32 @@ namespace Operaciones_Binarias
 
         public void cargar()
         {
-            Console.WriteLine("numero de que desea convertir a binario");
+            bool validacion;
 
-            numero = int.Parse(Console.ReadLine());
+            do
+            {
+                 validacion= false;
 
-            conversion();
+                try
+                {
+                    Console.WriteLine("numero de que desea convertir a binario ");
+
+                    this.numero = int.Parse(Console.ReadLine());
+
+                    conversion();
+                }catch(Exception e)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("'Error':Solo se permiten variables de tipo int positivo");
+                    Console.ReadKey();
+                    Console.Clear();
+                    validacion= true;
+                }
+
+
+
+            } while (validacion== true);
         }
-
-
 
         public void conversion()
         {
@@ -51,54 +69,32 @@ namespace Operaciones_Binarias
 
             do
             {
-
                 a = n % 2;
 
                 listas.Insert(0, a);
 
                 n = n / 2;
 
-
-               
-
-
             } while (n != 0);
 
             
-            this.nbinario =string.Join("",listas) ;
+            this.nbinario = Convert.ToInt32(string.Join("",listas)); 
             this.tamano = listas.Count;
             this.lista = listas;
 
+            Console.WriteLine("el numero binario de " + numero+" es "+nbinario);
+            Console.WriteLine();
         }
 
         public List<int> suma(List<int> lista1, List<int> lista2,int final)
         {
             List<int> resultado = new List<int>();
-            int longitud = 0;
            
             int prueba=0;
             int residuo = 0;
 
-            if (lista1.Count > lista2.Count)
-            {
-                longitud = lista1.Count;
-                for (int i = lista2.Count; i < lista1.Count; i++)
-                {
-                    lista2.Insert(0, 0);
-                }
-            }
-
-            if (lista2.Count > lista1.Count)
-            {
-                longitud = lista2.Count;
-                for (int i = lista1.Count; i < lista2.Count; i++)
-                {
-
-                    lista1.Insert(0, 0);
-                }
-            }
-
             
+           ( lista1,lista2 )= completar(lista1, lista2);
             for (int i = lista1.Count- 1; i >= 0; i--)
             {
                 
@@ -108,31 +104,31 @@ namespace Operaciones_Binarias
 
                 
 
-                if (prueba == 2 & i == 0 & final==0 )
+                if (prueba == 2 & i == 0 & (final==0 || final==1))
                 {
 
                     resultado.Insert(0,0);
                     resultado.Insert(0,1);
                     
                 }
-                else if (prueba == 3 & i ==0  & final==0)
+                else if (prueba == 3 & i ==0  & (final==0 || final == 1))
                 {
 
                     resultado.Insert(0,1);
                     resultado.Insert(0,1);
                     
-
                 }
                 else if (prueba == 0)
                 {
-                    residuo = 0;
 
+                    residuo = 0;
                     resultado.Insert(0,0);
+
                 }
                 else if (prueba == 1)
                 {
-                    residuo = 0;
 
+                    residuo = 0;
                     resultado.Insert(0,1);
 
                 }
@@ -150,31 +146,32 @@ namespace Operaciones_Binarias
 
                 }
 
-
-
             }
 
             int num = Convert.ToInt32(string.Join("", resultado));
+
+            if (final == 0) { Console.WriteLine("la suma binaria de " + String.Join("", lista1) + " mas " + String.Join("", lista2) + " es " + num); }
 
             return resultado;
 
         }
 
-
-        public List<int> resta(List<int>lista3)
+        public void resta(List<int>lista1, List<int> lista2,int num1,int num2)
         {
-            List<int> final = new List<int>();
+            
             List<int> negar = new List<int>();
-            int residuo = 0;
-            List<int> sumar = new List<int>() ;
-            List<int> resultado = new List<int>();
+            List<int> multi = new List<int>() { 1} ;
+            List<int> cambio = new List<int>();
 
-            sumar.Add(1);
+            if (num1 > num2) { cambio = lista1; lista1 = lista2 ; lista2 = cambio; }
 
-            for (int i =lista3.Count-1;i>=0; i--)
+
+            (lista1, lista2) = completar(lista1, lista2);
+
+            for (int i =lista1.Count-1;i>=0; i--)
             {
 
-                if (lista3[i] == 0)
+                if (lista1[i] == 0)
                 {
                     negar.Insert(0,1);
                 }
@@ -187,21 +184,42 @@ namespace Operaciones_Binarias
 
             }
             
-             resultado = suma(negar,sumar, 0);
+             multi = suma(negar,multi, 1);
            
-             final = suma(lista, resultado, 1);
+             multi = suma(lista2, multi, 2);
 
-            int num =Convert.ToInt32(string.Join("", final));
+             int num =Convert.ToInt32(string.Join("", multi));
 
             Console.WriteLine(num);
-            return final;
-
-
-
-
 
 
 
         }
+
+        public static(List<int>,List<int>) completar(List<int>lista1,List<int> lista2)
+        {
+            if (lista1.Count > lista2.Count)
+            {
+
+                for (int i = lista2.Count; i < lista1.Count; i++)
+                {
+                    lista2.Insert(0, 0);
+                }
+            }
+
+            if (lista2.Count > lista1.Count)
+            {
+
+                for (int i = lista1.Count; i < lista2.Count; i++)
+                {
+
+                    lista1.Insert(0, 0);
+                }
+            }
+            return (lista1,lista2);
+        }
+
+
+
     }
 }

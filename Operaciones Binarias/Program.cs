@@ -13,7 +13,7 @@ namespace Operaciones_Binarias
 
             a.cargar();
             b.cargar();
-            
+            a.resta(b.lista,a.lista,b.numero,a.numero);
             
 
 
