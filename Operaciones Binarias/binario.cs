@@ -41,10 +41,8 @@ namespace Operaciones_Binarias
                 try
                 {
                     Console.WriteLine("numero de que desea convertir a binario ");
-
                     this.numero = int.Parse(Console.ReadLine());
 
-                    conversion();
                 }catch(Exception e)
                 {
                     Console.WriteLine();
@@ -57,15 +55,15 @@ namespace Operaciones_Binarias
 
 
             } while (validacion== true);
+
+            conversion();
         }
 
         public void conversion()
         {
             int n = numero;
-          
             int a = 0;
             List<int> listas = new List<int>();
-
 
             do
             {
@@ -88,8 +86,7 @@ namespace Operaciones_Binarias
 
         public List<int> suma(List<int> lista1, List<int> lista2,int final)
         {
-            List<int> resultado = new List<int>();
-           
+            List<int> resultado = new List<int>();           
             int prueba=0;
             int residuo = 0;
 
