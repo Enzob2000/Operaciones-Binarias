@@ -40,8 +40,9 @@ namespace Operaciones_Binarias
 
                 try
                 {
-                    Console.WriteLine("numero de que desea convertir a binario ");
+                    Console.Write("El numero  que desea convertir a binario: ");
                     this.numero = int.Parse(Console.ReadLine());
+                    Console.WriteLine();
 
                 }catch(Exception e)
                 {
@@ -80,8 +81,9 @@ namespace Operaciones_Binarias
             this.tamano = listas.Count;
             this.lista = listas;
 
-            Console.WriteLine("el numero binario de " + numero+" es "+nbinario);
+            Console.WriteLine("La conversion binario de " + numero+" es "+nbinario);
             Console.WriteLine();
+            
         }
 
         public List<int> suma(List<int> lista1, List<int> lista2,int final)
@@ -149,28 +151,34 @@ namespace Operaciones_Binarias
 
             int num = Convert.ToInt32(string.Join("", resultado));
 
-            if (final == 0) { Console.WriteLine("la suma binaria de " + String.Join("", lista1) + " mas " + String.Join("", lista2) + " es " + num); }
+            if (final == 0) {
+
+                Console.WriteLine("la suma binaria de " + String.Join("", lista1) + " mas " + String.Join("", lista2) + " es " + num);
+
+            }
+
 
             return resultado;
 
         }
 
-        public void resta(List<int>lista1, List<int> lista2,int num1,int num2)
+        public void resta(List<int> lista2,int num2)
         {
-            
+            List<int> lista1 = new List<int>();
             List<int> negar = new List<int>();
             List<int> multi = new List<int>() { 1} ;
             List<int> cambio = new List<int>();
 
-            if (num1 > num2) { cambio = lista1; lista1 = lista2 ; lista2 = cambio; }
+            lista1 = lista;
 
+            if (num2>numero) { cambio = lista2; lista2 = lista1 ; lista1 = cambio; }
 
             (lista1, lista2) = completar(lista1, lista2);
 
-            for (int i =lista1.Count-1;i>=0; i--)
+            for (int i =lista2.Count-1;i>=0; i--)
             {
 
-                if (lista1[i] == 0)
+                if (lista2[i] == 0)
                 {
                     negar.Insert(0,1);
                 }
@@ -185,11 +193,11 @@ namespace Operaciones_Binarias
             
              multi = suma(negar,multi, 1);
            
-             multi = suma(lista2, multi, 2);
+             multi = suma(lista1, multi, 2);
 
              int num =Convert.ToInt32(string.Join("", multi));
 
-            Console.WriteLine(num);
+            Console.WriteLine("la resta binaria de " + String.Join("", lista1) + " menos " + String.Join("", lista2) + " es " + num);
 
 
 
