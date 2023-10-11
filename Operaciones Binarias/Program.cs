@@ -11,7 +11,7 @@ namespace Operaciones_Binarias
 
             binario b = new binario();
 
-            int opcion;
+            string opcion;
             bool v = true;
 
             do
@@ -22,12 +22,15 @@ namespace Operaciones_Binarias
                 Console.WriteLine("3. Conversión");
                 Console.WriteLine("0. Salir");
                 Console.WriteLine("-----------------------");
-                Console.Write("Selecciona una opción: ");
-                opcion = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Selecciona una opción: ");              
+                opcion = Console.ReadLine();
+
+               
+               
 
                 switch (opcion)
                 {
-                    case 1:
+                    case "1":
 
                         Console.Clear();
                         a.cargar();
@@ -36,7 +39,7 @@ namespace Operaciones_Binarias
                         Console.ReadKey();
                         break;
 
-                    case 2:
+                    case "2":
 
                         Console.Clear();
                         a.cargar();
@@ -45,27 +48,29 @@ namespace Operaciones_Binarias
                         Console.ReadKey();
                         break;
 
-                    case 3:
+                    case "3":
 
                         Console.Clear();
                         a.cargar();
                         Console.ReadKey();
                         break;
 
-                    case 0:
+                    case "0":
 
                         Console.WriteLine("Saliendo del programa...");
+                        Console.ReadKey();
                         v = false;
                         break;
 
                     default:
                         Console.WriteLine("Opción inválida. Por favor, selecciona una opción válida.");
+                        Console.ReadKey();
                         Console.Clear();
                         break;
                 }
 
 
-                //Console.WriteLine("la suma binaria de " + String.Join("", lista1) + " mas " + String.Join("", lista2) + " es " + num);
+                
 
 
                 Console.Clear();
