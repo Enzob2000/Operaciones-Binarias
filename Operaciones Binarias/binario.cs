@@ -47,7 +47,7 @@ namespace Operaciones_Binarias
                 }catch(Exception e)
                 {
                     Console.WriteLine();
-                    Console.WriteLine("'Error':Solo se permiten variables de tipo int positivo");
+                    Console.WriteLine("'Error':Solo se permiten numeros positivos");
                     Console.ReadKey();
                     Console.Clear();
                     validacion= true;
@@ -88,8 +88,7 @@ namespace Operaciones_Binarias
 
         public List<int> suma(List<int> lista1, List<int> lista2,int final)
         {  
-            //El tercer parametro de suma indica si final=0 realiza la suma y muestrala,si final=1 realiza la suma y no la muestra,si final=2 realiza la suma pero no tomes en cuenta el ultimo
-
+            
             List<int> resultado = new List<int>();           
             int prueba=0;
             int residuo = 0;
